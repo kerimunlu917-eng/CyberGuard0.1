@@ -1,6 +1,6 @@
 'use strict';
 const $=id=>document.getElementById(id),KEY='cyberguard.records.v3';
-const SAFE_BROWSING_API_BASE=(window.CYBERGUARD_API_BASE||'').replace(/\\/+$/,'');
+const SAFE_BROWSING_API_BASE=(window.CYBERGUARD_API_BASE||'').replace(/\/+$/,'');
 let records=[];try{records=JSON.parse(localStorage.getItem(KEY)||'[]')}catch{}
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function save(){records=records.slice(-100);try{localStorage.setItem(KEY,JSON.stringify(records))}catch{};render()}
