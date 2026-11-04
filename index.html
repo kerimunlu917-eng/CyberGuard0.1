@@ -1,1 +1,93 @@
-<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#08111f"><title>CyberGuard | Güvenlik Paneli</title><link rel="stylesheet" href="styles.css"><script defer src="api-config.js"></script><script defer src="app.js"></script></head><body><main class="wrap"><header class="hero"><div><p class="muted">BİLİŞİM GÜVENLİĞİ · v3.0</p><h1>CyberGuard Kontrol Paneli</h1><p>Dijital güvenliğini tek panelden kontrol et.</p></div><span>🛡️</span></header><nav class="nav no-print"><button data-filter="all" class="active">Tüm araçlar</button><button data-filter="passwordCard">Parola</button><button data-filter="urlCard">URL</button><button data-filter="ipCard">IP</button><button data-filter="reportCard">Rapor</button></nav><div class="grid"><section class="card" id="passwordCard"><h3>🔐 Gelişmiş parola analizi</h3><label>Test parolası<input id="password" type="password" autocomplete="new-password"></label><button id="toggle" class="secondary">Göster / gizle</button><button id="passwordCheck">Analiz et</button><div class="result" id="passwordResult">Sonuç bekleniyor.</div><p class="hint">Parola kaydedilmez. Sızıntı sorgusunda yalnızca SHA-1 önekinin ilk 5 karakteri gönderilir.</p></section><section class="card" id="urlCard"><h3>🔎 URL güvenlik kontrolü</h3><label>Web adresi<input id="url" placeholder="https://ornek.com"></label><button id="urlCheck">Bağlantıyı incele</button><div class="result" id="urlResult">Sonuç bekleniyor.</div><p class="hint">Safe Browsing API anahtarı sunucuda yapılandırılırsa tehdit eşleşmesi de kontrol edilir.</p></section><section class="card" id="ipCard"><h3>🌐 IPv4 / IPv6 araçları</h3><label>IPv4<input id="ip" value="192.168.1.25"></label><label>CIDR öneki<input id="prefix" type="number" min="0" max="32" value="24"></label><button id="ipCheck">IPv4 hesapla</button><div class="result" id="ipResult">Sonuç bekleniyor.</div><label>IPv6<input id="ipv6" placeholder="2001:db8::1"></label><button id="ipv6Check" class="secondary">IPv6 doğrula</button><div class="result" id="ipv6Result">Sonuç bekleniyor.</div></section><section class="card"><h3>🧭 Güvenlik rehberi</h3><ul><li>Benzersiz ve uzun parola kullanın.</li><li>MFA veya passkey etkinleştirin.</li><li>Alan adını tıklamadan önce doğrulayın.</li><li>Yazılımı güncel tutun, yedek alın.</li><li>Beklenmedik ekleri açmadan önce göndereni doğrulayın.</li></ul></section><section class="card full" id="reportCard"><h3>📊 Analiz geçmişi ve rapor</h3><div class="statline"><b>Analiz sayısı: <span id="count">0</span></b></div><div class="result" id="summary">Henüz analiz yok.</div><div class="actions no-print"><button id="txt">TXT indir</button><button id="pdf" class="secondary">PDF / yazdır</button><button id="clear" class="secondary">Geçmişi temizle</button></div><p class="hint">Geçmiş localStorage içinde tutulur. Sonuçlar kesin güvenlik garantisi değildir.</p></section></div><section id="printArea"></section></main><footer class="footer">CyberGuard · Açık kaynak</footer></body></html>
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080d17">
+  <meta name="description" content="Parola, bağlantı ve IP kontrolleri için pratik siber güvenlik araçları.">
+  <title>CyberGuard — Güvenlik Araçları</title>
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="api-config.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <main class="wrap">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">KİŞİSEL GÜVENLİK ARAÇLARI · 3.1</p>
+        <h1>CyberGuard</h1>
+        <p>Günlük dijital kontroller. Açık, anlaşılır, tek yerde.</p>
+      </div>
+      <span aria-hidden="true">⌑</span>
+    </header>
+
+    <nav class="nav no-print" aria-label="Araç filtreleri">
+      <button data-filter="all" class="active" type="button">Tüm araçlar</button>
+      <button data-filter="passwordCard" type="button">Parola</button>
+      <button data-filter="urlCard" type="button">Bağlantı</button>
+      <button data-filter="ipCard" type="button">IP / Ağ</button>
+      <button data-filter="reportCard" type="button">Raporlar</button>
+    </nav>
+
+    <div class="grid">
+      <section class="card" id="passwordCard">
+        <h3>Parola denetimi</h3>
+        <label for="password">Kontrol edilecek parola</label>
+        <input id="password" type="password" autocomplete="new-password" placeholder="Parolanızı girin">
+        <button id="toggle" class="secondary" type="button">Göster / gizle</button>
+        <button id="passwordCheck" type="button">Parolayı analiz et</button>
+        <div class="result" id="passwordResult" aria-live="polite">Analiz için parola girin.</div>
+        <p class="hint">Parolanız kaydedilmez. Sızıntı kontrolünde yalnızca SHA-1 önekinin ilk 5 karakteri gönderilir.</p>
+      </section>
+
+      <section class="card" id="urlCard">
+        <h3>Bağlantı inceleme</h3>
+        <label for="url">Web adresi</label>
+        <input id="url" type="url" inputmode="url" placeholder="https://ornek.com">
+        <button id="urlCheck" type="button">Adresi kontrol et</button>
+        <div class="result" id="urlResult" aria-live="polite">Kontrol sonucu burada görüntülenir.</div>
+        <p class="hint">Yerel işaretler incelenir. Harici tehdit kontrolü sunucu yapılandırmasına bağlıdır.</p>
+      </section>
+
+      <section class="card" id="ipCard">
+        <h3>IP ve ağ hesaplayıcı</h3>
+        <label for="ip">IPv4 adresi</label>
+        <input id="ip" inputmode="decimal" value="192.168.1.25">
+        <label for="prefix">CIDR öneki</label>
+        <input id="prefix" type="number" min="0" max="32" value="24">
+        <button id="ipCheck" type="button">Ağı hesapla</button>
+        <div class="result" id="ipResult" aria-live="polite">Ağ bilgileri burada görüntülenir.</div>
+        <label for="ipv6">IPv6 adresi</label>
+        <input id="ipv6" placeholder="2001:db8::1">
+        <button id="ipv6Check" class="secondary" type="button">IPv6 biçimini doğrula</button>
+        <div class="result" id="ipv6Result" aria-live="polite">Henüz doğrulama yapılmadı.</div>
+      </section>
+
+      <section class="card" id="guideCard">
+        <h3>Temel güvenlik notları</h3>
+        <ul>
+          <li>Her hesap için ayrı ve uzun parola kullanın.</li>
+          <li>Mümkünse çok faktörlü doğrulamayı açın.</li>
+          <li>Alan adını, özellikle giriş sayfalarında, dikkatle kontrol edin.</li>
+          <li>İşletim sistemi ve uygulamaları güncel tutun.</li>
+          <li>Önemli dosyalarınızın yedeğini alın.</li>
+        </ul>
+      </section>
+
+      <section class="card full" id="reportCard">
+        <h3>İşlem geçmişi</h3>
+        <div class="statline"><b>Kaydedilen kontrol: <span id="count">0</span></b></div>
+        <div class="result" id="summary" aria-live="polite">Henüz kayıt bulunmuyor.</div>
+        <div class="actions no-print">
+          <button id="txt" type="button">TXT raporu indir</button>
+          <button id="pdf" class="secondary" type="button">Yazdır / PDF</button>
+          <button id="clear" class="secondary" type="button">Geçmişi temizle</button>
+        </div>
+        <p class="hint">Geçmiş yalnızca bu tarayıcıda saklanır. Analizler kesin güvenlik garantisi vermez.</p>
+      </section>
+    </div>
+  </main>
+  <footer class="footer">CyberGuard · Açık kaynak güvenlik araçları</footer>
+  <section id="printArea" aria-label="Yazdırılabilir rapor"></section>
+</body>
+</html>
