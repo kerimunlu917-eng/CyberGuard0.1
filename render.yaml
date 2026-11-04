@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: cyberguard-api
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: GOOGLE_SAFE_BROWSING_API_KEY
+        sync: false
+      - key: FRONTEND_ORIGIN
+        value: https://kerimunlu917-eng.github.io
