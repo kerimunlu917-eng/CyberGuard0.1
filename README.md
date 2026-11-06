@@ -1,4 +1,4 @@
-# CyberGuard 3.0
+# CyberGuard 3.1
 Türkçe temel siber güvenlik paneli.
 
 ## Özellikler
