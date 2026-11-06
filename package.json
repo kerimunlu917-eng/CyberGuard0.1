@@ -1,1 +1,1 @@
-{"name":"cyberguard","version":"3.0.0","private":true,"engines":{"node":">=18"},"scripts":{"start":"node server.js","test":"node --test"},"dependencies":{"express":"^4.21.2"}}
+{"name":"cyberguard","version":"3.1.0","private":true,"engines":{"node":">=18"},"scripts":{"start":"node server.js","test":"node --test"},"dependencies":{"express":"^4.21.2"}}
